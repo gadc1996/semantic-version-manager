@@ -30,7 +30,8 @@ jobs:
         git config --global user.name "GitHub Actions"
         git add .version
         git commit -m "Update version [skip ci]"
-      working-directory: $GITHUB_WORKSPACE
+      working-directory: ${{ github.workspace }}
+
 
 
 
