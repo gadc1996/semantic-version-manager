@@ -30,6 +30,7 @@ requests-toolbelt==1.0.0
 rfc3986==2.0.0
 rich==13.7.0
 SecretStorage==3.3.3
+semversion==1.0.1
 twine==4.0.2
 urllib3==2.1.0
 zipp==3.17.0

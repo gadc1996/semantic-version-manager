@@ -1,8 +1,9 @@
 from setuptools import setup, find_packages
+from semversion import Version
 
 setup(
     name='semversion',
-    version= "1.0.1",
+    version= Version.get(),
     packages=find_packages(),
     entry_points={
         'console_scripts': [
