@@ -24,7 +24,11 @@ jobs:
         pip install wheel twine semversion click
       
     - name: Update version
-      run: python -m semversion minor
+      run: |
+        python -m semversion minor
+        echo "$(cat .version)" > $GITHUB_WORKSPACE/.version
+      working-directory: $GITHUB_WORKSPACE
+
 
 
     - name: Build and deploy to PyPI Test
