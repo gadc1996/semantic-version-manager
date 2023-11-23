@@ -3,7 +3,7 @@ from semantic_versioning import Version
 
 setup(
     name='semantic-versioning',
-    version= "0.0.6",
+    version= "1.0.0",
     packages=find_packages(),
     entry_points={
         'console_scripts': [
