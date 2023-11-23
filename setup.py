@@ -1,5 +1,4 @@
 from setuptools import setup, find_packages
-from semantic_versioning import Version
 
 setup(
     name='semversion',
