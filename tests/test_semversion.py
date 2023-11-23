@@ -2,7 +2,7 @@ import unittest
 from unittest.mock import mock_open, patch
 from semantic_versioning import Version
 
-class TestVersion(unittest.TestCase):
+class TestSemVersion(unittest.TestCase):
     def setUp(self):
         self.file_content = "1.2.3"
         self.mock_file = mock_open(read_data=self.file_content)
