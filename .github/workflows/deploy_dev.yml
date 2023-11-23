@@ -32,8 +32,6 @@ jobs:
         git commit -m "Update version [skip ci]"
       working-directory: ${{ github.workspace }}
 
-
-
     - name: Build and deploy to PyPI Test
       run: |
         python setup.py sdist bdist_wheel
