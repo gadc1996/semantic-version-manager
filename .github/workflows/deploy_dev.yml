@@ -21,7 +21,7 @@ jobs:
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
-        pip install wheel twine semversion
+        pip install wheel twine semversion click
       
     - name: Update version
       run: python -m semversion minor
