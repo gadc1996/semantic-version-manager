@@ -10,13 +10,16 @@ jobs:
       
     steps:
       - uses: actions/checkout@v4
-
       - uses: actions/setup-python@v4
         with:
-          python-version: '3.10' 
+          python-version: '3.11' 
 
-      - run: pip install black
-      - run: black .
-      - uses: stefanzweifel/git-auto-commit-action@v5
+      - name: Lint Python files
+        run: |
+          pip install black
+          black .
+
+      - name: Commit version change
+        uses: stefanzweifel/git-auto-commit-action@v5
         with:
-          commit_message: Fix lint
+          commit_message: Fix lint [skip ci]
