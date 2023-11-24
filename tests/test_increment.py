@@ -10,7 +10,9 @@ def mock_file_content():
 
 @pytest.fixture
 def mock_open_file(mock_file_content):
-    with patch("builtins.open", new_callable=mock_open, read_data=mock_file_content) as m:
+    with patch(
+        "builtins.open", new_callable=mock_open, read_data=mock_file_content
+    ) as m:
         yield m
 
 
