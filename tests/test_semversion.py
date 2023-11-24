@@ -2,6 +2,7 @@ import unittest
 from unittest.mock import mock_open, patch
 from semantic_versioning import Version
 
+
 class TestSemVersion(unittest.TestCase):
     def setUp(self):
         self.file_content = "1.2.3"
@@ -42,6 +43,7 @@ class TestSemVersion(unittest.TestCase):
         mock_open_file.assert_called_once_with(Version.FILE_PATH, "w")
         handle = mock_open_file()
         handle.write.assert_called_once_with(Version.DEFAULT_VERSION)
+
 
 if __name__ == "__main__":
     unittest.main()
