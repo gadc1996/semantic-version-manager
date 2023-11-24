@@ -14,5 +14,6 @@ jobs:
 
       - name: Test python files
         run: |
+          pip install .
           pip install pytest
           pytest tests/
