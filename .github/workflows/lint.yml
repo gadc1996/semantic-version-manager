@@ -19,7 +19,7 @@ jobs:
           pip install black
           black .
 
-      - name: Commit version change
-        uses: stefanzweifel/git-auto-commit-action@v5
-        with:
-          commit_message: Fix lint [skip ci]
+      # - name: Commit version change
+      #   uses: stefanzweifel/git-auto-commit-action@v5
+      #   with:
+      #     commit_message: Fix lint [skip ci]
