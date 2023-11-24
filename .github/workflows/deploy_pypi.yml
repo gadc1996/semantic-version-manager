@@ -1,0 +1,55 @@
+name: Deploy to PyPI
+
+on:
+  push:
+    branches:
+      - prod
+      - qa
+      - dev
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    permissions: 
+      contents: write
+
+    steps:
+    - name: Get branch name
+      id: branch-name
+      uses: tj-actions/branch-names@v7
+
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.11'
+
+    - name: Install dependencies
+      run: pip install wheel twine semversion click
+      
+    - name: Update patch version
+      if: steps.branch-name.outputs.current_branch == 'dev'
+      run: python -m semversion patch
+
+    - name: Update minor version
+      if: steps.branch-name.outputs.current_branch == 'qa'
+      run: python -m semversion minor
+
+    - name: Update minor version
+      if: steps.branch-name.outputs.current_branch == 'qa'
+      run: python -m semversion minor
+
+    - name: Commit version change
+      uses: stefanzweifel/git-auto-commit-action@v5
+      with:
+        commit_message: update version [skip ci]
+
+    - name: Build and deploy to PyPI Test
+      run: |
+        python setup.py sdist bdist_wheel
+        twine upload dist/*
+      env:
+        TWINE_USERNAME: __token__
+        TWINE_PASSWORD: ${{ secrets.PYPI_API_TOKEN }}
