@@ -1,0 +1,42 @@
+name: Deploy to PyPI Test
+
+on:
+  push:
+    branches-ignore: 
+      - prod
+      - qa
+      - dev
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    permissions: 
+      contents: write
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.11'
+
+    - name: Install dependencies
+      run: pip install wheel twine semversion click
+      
+    - name: Update version
+      run: python -m semversion patch
+    
+    - name: Commit version change
+      uses: stefanzweifel/git-auto-commit-action@v5
+      with:
+        commit_message: Increment patch [skip ci]
+
+    - name: Build and deploy to PyPI Test
+      run: |
+        python setup.py sdist bdist_wheel
+        twine upload --repository-url https://test.pypi.org/legacy/ dist/*
+      env:
+        TWINE_USERNAME: __token__
+        TWINE_PASSWORD: ${{ secrets.TEST_PYPI_API_TOKEN }}
