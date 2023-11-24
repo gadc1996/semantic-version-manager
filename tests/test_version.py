@@ -1,21 +1,22 @@
-import unittest
+import pytest
 from unittest.mock import mock_open, patch
 from semversion import version
 
+@pytest.fixture
+def file_content():
+    return "1.2.3"
 
-class TestVersion(unittest.TestCase):
-    def setUp(self):
-        self.file_content = "1.2.3"
-        self.mock_file = mock_open(read_data=self.file_content)
+@pytest.fixture
+def mock_open_file(file_content):
+    with patch("builtins.open", new_callable=mock_open, read_data=file_content) as m:
+        yield m
 
-    @patch("builtins.open", new_callable=mock_open, read_data="1.2.3")
-    def test_get_version(self, mock_open_file):
-        with patch("builtins.open", mock_open_file):
-            result = version()
-            self.assertEqual(result, self.file_content)
+def test_get_version(mock_open_file, file_content):
+    with patch("builtins.open", mock_open_file):
+        result = version()
+        assert result == file_content
 
-    @patch("builtins.open", side_effect=FileNotFoundError("File not found"))
-    def test_file_not_found(self, mock_open_file):
-        with patch("builtins.open", mock_open_file):
-            with self.assertRaises(FileNotFoundError, msg="Expected FileNotFoundError"):
-                version()
+def test_file_not_found():
+    with patch("builtins.open", side_effect=FileNotFoundError("File not found")):
+        with pytest.raises(FileNotFoundError):
+            version()
