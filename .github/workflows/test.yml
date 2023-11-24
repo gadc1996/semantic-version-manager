@@ -15,4 +15,3 @@ jobs:
       - name: Test python files
         run: |
           python -m unittest discover tests/
-
