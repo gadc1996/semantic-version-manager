@@ -3,7 +3,6 @@ from unittest.mock import mock_open, patch
 import semversion
 
 
-
 class TestIncrement(unittest.TestCase):
     mock_file_content = "0.1.0"
 
