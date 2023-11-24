@@ -12,6 +12,7 @@
 				"ms-python.vscode-pylance",
 				"ms-python.black-formatter",
 				"batisteo.vscode-django",
+				"vmware.vscode-manifest-yaml"
 			],
 			"settings": {
 				"terminal.integrated.shell.linux": "/bin/bash"
