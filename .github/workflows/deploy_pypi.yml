@@ -40,8 +40,8 @@ jobs:
       run: python -m semversion minor
 
     - name: Update minor version
-      if: steps.branch-name.outputs.current_branch == 'qa'
-      run: python -m semversion minor
+      if: steps.branch-name.outputs.current_branch == 'prod'
+      run: python -m semversion major
 
     - name: Commit version change
       uses: stefanzweifel/git-auto-commit-action@v5
