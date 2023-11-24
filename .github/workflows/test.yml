@@ -12,8 +12,14 @@ jobs:
         with:
           python-version: '3.11' 
 
-      - name: Test python files
-        run: |
-          pip install .
-          pip install pytest
-          pytest tests/
+      - name: Intall dependencies
+        run: pip install .
+
+      - name: Run pytest
+        uses: pavelzw/pytest-action@v2
+        with:
+          verbose: true
+          emoji: true
+          job-summary: true
+          click-to-expand: true
+          report-title: 'Test Report'
