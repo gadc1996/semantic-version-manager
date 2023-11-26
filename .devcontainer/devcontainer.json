@@ -1,4 +1,4 @@
-// For format details, see https://aka.ms/devcontainer.json. For config options, see the
+// For formajt details, see https://aka.ms/devcontainer.json. For config options, see the
 // README at: https://github.com/devcontainers/templates/tree/main/src/docker-existing-docker-compose
 {
 	"name": "Semantic Version Manager",
@@ -11,7 +11,8 @@
 				"ms-python.python",
 				"ms-python.vscode-pylance",
 				"ms-python.black-formatter",
-				"batisteo.vscode-django",
+				"github.vscode-github-actions",
+				"me-dutour-mathieu.vscode-github-actions"
 			],
 			"settings": {
 				"terminal.integrated.shell.linux": "/bin/bash"
